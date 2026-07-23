@@ -84,10 +84,10 @@
         "body": "for $1 {\n\t$0\n}",
         "description": "For loop"
     },
-    "for range single": {
+    "for i": {
         "prefix": "fori",
-        "body": "for ${1:i} := range $2 {\n\t$0\n}",
-        "description": "For range with single variable"
+        "body": "for i := 0; i < $1; i++ {\n\t$0\n}",
+        "description": "Classic for loop"
     },
     "for range": {
         "prefix": "forr",
@@ -129,11 +129,6 @@
         "body": "defer $1($0)",
         "description": "Defer function call"
     },
-    "channel": {
-        "prefix": "ch",
-        "body": "make(chan $1)",
-        "description": "Make channel"
-    },
     "fmt.Println": {
         "prefix": "fp",
         "body": "fmt.Println($1)",
@@ -149,15 +144,15 @@
         "body": "fmt.Errorf(\"${1}: %w\", ${2:err})",
         "description": "fmt.Errorf() with wrap"
     },
-    "log.Println": {
-        "prefix": "lp",
-        "body": "log.Println($1)",
-        "description": "log.Println()"
+    "slog.Info": {
+        "prefix": "sli",
+        "body": "slog.Info($1)",
+        "description": "slog.Info()"
     },
-    "log.Printf": {
-        "prefix": "lf",
-        "body": "log.Printf($1)",
-        "description": "log.Printf()"
+    "slog.Error": {
+        "prefix": "sle",
+        "body": "slog.Error($1)",
+        "description": "slog.Error()"
     },
     "test function": {
         "prefix": "tf",
@@ -173,16 +168,6 @@
         "prefix": "tdt",
         "body": "tests := []struct{\n\tname string\n\t$1\n}{\n\t{name: \"$2\"},\n}\n\nfor _, tt := range tests {\n\tt.Run(tt.name, func(t *testing.T) {\n\t\t$0\n\t})\n}",
         "description": "Table-driven test"
-    },
-    "map": {
-        "prefix": "map",
-        "body": "map[$1]$2",
-        "description": "Map type"
-    },
-    "make": {
-        "prefix": "make",
-        "body": "make($1)",
-        "description": "Make call"
     },
     "append": {
         "prefix": "ap",
