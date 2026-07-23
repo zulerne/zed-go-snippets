@@ -4,5 +4,5 @@ version = "0.1.0"
 schema_version = 1
 authors = ["zulerne"]
 description = "Minimal Go snippets for Zed — short prefixes, no bloat."
-repository = "https://github.com/zulerne/golang-snippets"
+repository = "https://github.com/zulerne/zed-go-snippets"
 snippets = ["./snippets/go.json"]
