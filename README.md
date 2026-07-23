@@ -28,6 +28,8 @@ Minimal Go snippets with short prefixes for Zed.
 | `switch` | Switch statement |
 | `sel` | Select statement |
 | `case` | Case clause |
+| `tswitch` | Type switch |
+| `enum` | Enum with iota |
 | `go` | `go func() {}()` |
 | `gof` | `go f()` |
 | `defer` | `defer func() {}()` |

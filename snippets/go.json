@@ -109,6 +109,16 @@
         "body": "case $1:\n\t$0",
         "description": "Case clause"
     },
+    "type switch": {
+        "prefix": "tswitch",
+        "body": "switch ${1:v} := ${2:x}.(type) {\ncase $3:\n\t$0\n}",
+        "description": "Type switch"
+    },
+    "enum": {
+        "prefix": "enum",
+        "body": "type ${1:Name} int\n\nconst (\n\t${2:A} $1 = iota\n\t$0\n)",
+        "description": "Enum with iota"
+    },
     "goroutine": {
         "prefix": "go",
         "body": "go func() {\n\t$0\n}()",
