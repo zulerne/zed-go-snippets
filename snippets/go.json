@@ -1,0 +1,197 @@
+{
+    "package main": {
+        "prefix": "pkgm",
+        "body": "package main\n\nfunc main() {\n\t$0\n}",
+        "description": "package main with main function"
+    },
+    "import": {
+        "prefix": "im",
+        "body": "import \"$1\"",
+        "description": "Import statement"
+    },
+    "import block": {
+        "prefix": "ims",
+        "body": "import (\n\t\"$1\"\n)",
+        "description": "Import block"
+    },
+    "constant": {
+        "prefix": "co",
+        "body": "const $1 = $2",
+        "description": "Constant declaration"
+    },
+    "constant block": {
+        "prefix": "cos",
+        "body": "const (\n\t$1 = $2\n)",
+        "description": "Constant block"
+    },
+    "variable": {
+        "prefix": "var",
+        "body": "var $1 $2",
+        "description": "Variable declaration"
+    },
+    "variable block": {
+        "prefix": "vars",
+        "body": "var (\n\t$1 $2\n)",
+        "description": "Variable block"
+    },
+    "struct": {
+        "prefix": "st",
+        "body": "type ${1:Name} struct {\n\t$0\n}",
+        "description": "Struct declaration"
+    },
+    "interface": {
+        "prefix": "iface",
+        "body": "type ${1:Name} interface {\n\t$0\n}",
+        "description": "Interface declaration"
+    },
+    "function": {
+        "prefix": "func",
+        "body": "func ${1:name}($2) $3{\n\t$0\n}",
+        "description": "Function declaration"
+    },
+    "method": {
+        "prefix": "meth",
+        "body": "func ($1 $2) $3($4) $5{\n\t$0\n}",
+        "description": "Method declaration"
+    },
+    "init function": {
+        "prefix": "init",
+        "body": "func init() {\n\t$0\n}",
+        "description": "init function"
+    },
+    "main function": {
+        "prefix": "main",
+        "body": "func main() {\n\t$0\n}",
+        "description": "main function"
+    },
+    "if": {
+        "prefix": "if",
+        "body": "if $1 {\n\t$0\n}",
+        "description": "If statement"
+    },
+    "if else": {
+        "prefix": "ife",
+        "body": "if $1 {\n\t$2\n} else {\n\t$0\n}",
+        "description": "If-else statement"
+    },
+    "if err != nil": {
+        "prefix": "iferr",
+        "body": "if err != nil {\n\t$0\n}",
+        "description": "If err != nil"
+    },
+    "for": {
+        "prefix": "for",
+        "body": "for $1 {\n\t$0\n}",
+        "description": "For loop"
+    },
+    "for range single": {
+        "prefix": "fori",
+        "body": "for ${1:i} := range $2 {\n\t$0\n}",
+        "description": "For range with single variable"
+    },
+    "for range": {
+        "prefix": "forr",
+        "body": "for ${1:k}, ${2:v} := range $3 {\n\t$0\n}",
+        "description": "For range with key and value"
+    },
+    "switch": {
+        "prefix": "switch",
+        "body": "switch $1 {\ncase $2:\n\t$0\n}",
+        "description": "Switch statement"
+    },
+    "select": {
+        "prefix": "sel",
+        "body": "select {\ncase $1:\n\t$0\n}",
+        "description": "Select statement"
+    },
+    "case": {
+        "prefix": "case",
+        "body": "case $1:\n\t$0",
+        "description": "Case clause"
+    },
+    "goroutine": {
+        "prefix": "go",
+        "body": "go func() {\n\t$0\n}()",
+        "description": "Anonymous goroutine"
+    },
+    "goroutine call": {
+        "prefix": "gof",
+        "body": "go $1($0)",
+        "description": "Goroutine function call"
+    },
+    "defer": {
+        "prefix": "defer",
+        "body": "defer func() {\n\t$0\n}()",
+        "description": "Defer anonymous function"
+    },
+    "defer call": {
+        "prefix": "deferf",
+        "body": "defer $1($0)",
+        "description": "Defer function call"
+    },
+    "channel": {
+        "prefix": "ch",
+        "body": "make(chan $1)",
+        "description": "Make channel"
+    },
+    "fmt.Println": {
+        "prefix": "fp",
+        "body": "fmt.Println($1)",
+        "description": "fmt.Println()"
+    },
+    "fmt.Printf": {
+        "prefix": "ff",
+        "body": "fmt.Printf($1)",
+        "description": "fmt.Printf()"
+    },
+    "fmt.Errorf": {
+        "prefix": "fe",
+        "body": "fmt.Errorf(\"${1}: %w\", ${2:err})",
+        "description": "fmt.Errorf() with wrap"
+    },
+    "log.Println": {
+        "prefix": "lp",
+        "body": "log.Println($1)",
+        "description": "log.Println()"
+    },
+    "log.Printf": {
+        "prefix": "lf",
+        "body": "log.Printf($1)",
+        "description": "log.Printf()"
+    },
+    "test function": {
+        "prefix": "tf",
+        "body": "func Test$1(t *testing.T) {\n\t$0\n}",
+        "description": "Test function"
+    },
+    "benchmark function": {
+        "prefix": "bf",
+        "body": "func Benchmark$1(b *testing.B) {\n\tfor b.Loop() {\n\t\t$0\n\t}\n}",
+        "description": "Benchmark function"
+    },
+    "table-driven test": {
+        "prefix": "tdt",
+        "body": "tests := []struct{\n\tname string\n\t$1\n}{\n\t{name: \"$2\"},\n}\n\nfor _, tt := range tests {\n\tt.Run(tt.name, func(t *testing.T) {\n\t\t$0\n\t})\n}",
+        "description": "Table-driven test"
+    },
+    "map": {
+        "prefix": "map",
+        "body": "map[$1]$2",
+        "description": "Map type"
+    },
+    "make": {
+        "prefix": "make",
+        "body": "make($1)",
+        "description": "Make call"
+    },
+    "append": {
+        "prefix": "ap",
+        "body": "${1:slice} = append($1, $2)",
+        "description": "Append to slice"
+    },
+    "error return": {
+        "prefix": "ret",
+        "body": "return ${1:nil}, ${2:err}",
+        "description": "Return with error"
+    }
+}
