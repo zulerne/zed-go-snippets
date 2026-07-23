@@ -1,6 +1,6 @@
 # Golang Snippets for Zed
 
-Minimal Go snippets with short prefixes — no `go-` prefix, no bloat.
+Minimal Go snippets with short prefixes for Zed.
 
 ## Snippets
 
