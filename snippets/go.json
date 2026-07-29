@@ -146,8 +146,23 @@
     },
     "fmt.Printf": {
         "prefix": "ff",
-        "body": "fmt.Printf($1)",
+        "body": "fmt.Printf(\"$1\", $2)",
         "description": "fmt.Printf()"
+    },
+    "fmt.Sprintf": {
+        "prefix": "fs",
+        "body": "fmt.Sprintf(\"$1\", $2)",
+        "description": "fmt.Sprintf()"
+    },
+    "fmt.Fprintln": {
+        "prefix": "fw",
+        "body": "fmt.Fprintln(${1:w}, $2)",
+        "description": "fmt.Fprintln()"
+    },
+    "fmt.Fprintf": {
+        "prefix": "fwf",
+        "body": "fmt.Fprintf(${1:w}, \"$2\", $3)",
+        "description": "fmt.Fprintf()"
     },
     "fmt.Errorf": {
         "prefix": "fe",
@@ -188,5 +203,20 @@
         "prefix": "ret",
         "body": "return ${1:nil}, ${2:err}",
         "description": "Return with error"
+    },
+    "context.WithCancel": {
+        "prefix": "ctxc",
+        "body": "${1:ctx}, ${2:cancel} := context.WithCancel($3)",
+        "description": "context.WithCancel()"
+    },
+    "context.WithTimeout": {
+        "prefix": "ctxt",
+        "body": "${1:ctx}, ${2:cancel} := context.WithTimeout($3, ${4:5*time.Second})",
+        "description": "context.WithTimeout()"
+    },
+    "context.WithValue": {
+        "prefix": "ctxv",
+        "body": "${1:ctx} = context.WithValue($1, ${2:key}, ${3:val})",
+        "description": "context.WithValue()"
     }
 }
