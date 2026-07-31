@@ -1,6 +1,6 @@
 id = "golang-snippets"
 name = "Golang Snippets"
-version = "0.1.0"
+version = "0.2.0"
 schema_version = 1
 authors = ["zulerne"]
 description = "Minimal Go snippets with short prefixes for Zed."
