@@ -51,8 +51,13 @@
     },
     "method": {
         "prefix": "meth",
-        "body": "func ($1 $2) $3($4) $5{\n\t$0\n}",
+        "body": "func (${1:r} ${2:Type}) ${3:Name}($4) $5{\n\t$0\n}",
         "description": "Method declaration"
+    },
+    "constructor": {
+        "prefix": "new",
+        "body": "func New${1:Type}($2) *$1 {\n\treturn &$1{\n\t\t$0\n\t}\n}",
+        "description": "Constructor function"
     },
     "init function": {
         "prefix": "init",
@@ -79,6 +84,31 @@
         "body": "if err != nil {\n\t$0\n}",
         "description": "If err != nil"
     },
+    "if err != nil return wrap": {
+        "prefix": "errw",
+        "body": "if err != nil {\n\treturn $1fmt.Errorf(\"${2}: %w\", err)\n}",
+        "description": "If err != nil with wrapped return"
+    },
+    "if comma ok": {
+        "prefix": "ifok",
+        "body": "if ${1:val}, ok := ${2:expr}; ok {\n\t$0\n}",
+        "description": "Comma-ok idiom"
+    },
+    "errors.New": {
+        "prefix": "errn",
+        "body": "errors.New(\"$1\")",
+        "description": "errors.New()"
+    },
+    "errors.Is": {
+        "prefix": "erris",
+        "body": "if errors.Is(${1:err}, ${2:target}) {\n\t$0\n}",
+        "description": "errors.Is() check"
+    },
+    "errors.As": {
+        "prefix": "erras",
+        "body": "var ${1:e} *${2:Type}\nif errors.As(${3:err}, &$1) {\n\t$0\n}",
+        "description": "errors.As() check"
+    },
     "for": {
         "prefix": "for",
         "body": "for $1 {\n\t$0\n}",
@@ -93,6 +123,11 @@
         "prefix": "forr",
         "body": "for ${1:k}, ${2:v} := range $3 {\n\t$0\n}",
         "description": "For range with key and value"
+    },
+    "for select": {
+        "prefix": "forsel",
+        "body": "for {\n\tselect {\n\tcase $1:\n\t\t$0\n\t}\n}",
+        "description": "For-select loop"
     },
     "switch": {
         "prefix": "switch",
@@ -138,6 +173,61 @@
         "prefix": "deferf",
         "body": "defer $1($0)",
         "description": "Defer function call"
+    },
+    "make channel": {
+        "prefix": "mch",
+        "body": "${1:ch} := make(chan ${2:int}, ${3:0})",
+        "description": "Make channel"
+    },
+    "mutex lock": {
+        "prefix": "lock",
+        "body": "${1:mu}.Lock()\ndefer $1.Unlock()",
+        "description": "Lock with deferred unlock"
+    },
+    "interface compliance": {
+        "prefix": "impl",
+        "body": "var _ ${1:Interface} = (*${2:Type})(nil)",
+        "description": "Compile-time interface check"
+    },
+    "http handler": {
+        "prefix": "hand",
+        "body": "func ${1:handler}(w http.ResponseWriter, r *http.Request) {\n\t$0\n}",
+        "description": "HTTP handler function"
+    },
+    "http HandleFunc": {
+        "prefix": "hf",
+        "body": "${1:mux}.HandleFunc(\"${2|GET,POST,PUT,PATCH,DELETE|} ${3:/path}\", ${4:handler})",
+        "description": "Register HTTP route"
+    },
+    "http.Error": {
+        "prefix": "herr",
+        "body": "http.Error(w, ${1:\"error\"}, ${2|http.StatusInternalServerError,http.StatusBadRequest,http.StatusNotFound,http.StatusForbidden,http.StatusUnauthorized|})",
+        "description": "HTTP error response"
+    },
+    "httptest.NewServer": {
+        "prefix": "tsrv",
+        "body": "${1:ts} := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {\n\t$0\n}))\ndefer $1.Close()",
+        "description": "httptest server"
+    },
+    "os.Open file": {
+        "prefix": "ofile",
+        "body": "${1:f}, err := os.Open(${2:name})\nif err != nil {\n\treturn $3err\n}\ndefer $1.Close()",
+        "description": "Open file with error check and defer close"
+    },
+    "errgroup": {
+        "prefix": "eg",
+        "body": "${1:g}, ${2:ctx} := errgroup.WithContext(${3:ctx})\n$1.Go(func() error {\n\t$0\n\treturn nil\n})\nif err := $1.Wait(); err != nil {\n\treturn err\n}",
+        "description": "errgroup pattern"
+    },
+    "json tag": {
+        "prefix": "json",
+        "body": "`json:\"${1:name}\"`",
+        "description": "JSON struct tag"
+    },
+    "json tag omitempty": {
+        "prefix": "jsono",
+        "body": "`json:\"${1:name},${2|omitempty,omitzero|}\"`",
+        "description": "JSON struct tag with omitempty"
     },
     "fmt.Println": {
         "prefix": "fp",
