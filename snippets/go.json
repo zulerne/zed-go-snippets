@@ -260,12 +260,12 @@
         "description": "fmt.Errorf() with wrap"
     },
     "log.Info": {
-        "prefix": "sli",
+        "prefix": "li",
         "body": "log.Info($1)",
         "description": "log.Info()"
     },
     "log.Error": {
-        "prefix": "sle",
+        "prefix": "le",
         "body": "log.Error($1)",
         "description": "log.Error()"
     },
