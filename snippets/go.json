@@ -259,15 +259,15 @@
         "body": "fmt.Errorf(\"${1}: %w\", ${2:err})",
         "description": "fmt.Errorf() with wrap"
     },
-    "slog.Info": {
+    "log.Info": {
         "prefix": "sli",
-        "body": "slog.Info($1)",
-        "description": "slog.Info()"
+        "body": "log.Info($1)",
+        "description": "log.Info()"
     },
-    "slog.Error": {
+    "log.Error": {
         "prefix": "sle",
-        "body": "slog.Error($1)",
-        "description": "slog.Error()"
+        "body": "log.Error($1)",
+        "description": "log.Error()"
     },
     "test function": {
         "prefix": "tf",
